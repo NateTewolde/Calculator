@@ -13,6 +13,9 @@ function multiply(firstNum, secondNum) {
   return firstNum * secondNum;
 }
 function divide(firstNum, secondNum) {
+  if (secondNum === "0") {
+    return "Crashing the matrix";
+  }
   return firstNum / secondNum;
 }
 
@@ -27,6 +30,9 @@ function formatButtons() {
   const btns = document.querySelectorAll("button");
   btns.forEach((btn) => {
     btn.addEventListener("click", () => {
+      if (returnDisplayValue() == "Crashing the matrix") {
+        clearBtn();
+      }
       window[btn.className](btn.textContent);
     });
   });
@@ -50,6 +56,7 @@ function operatorBtn(operator) {
       populateDisplay(operator);
       return -1;
     }
+
     return -1;
   }
 
@@ -80,7 +87,7 @@ function addToDisplay(entry) {
   return displayValue;
 }
 
-//
+//Gets the appropriate calculation variables from the display and gets the calculation answer
 function equalBtn() {
   const ops = ["+", "-", "÷", "*"];
   let display = returnDisplayValue();

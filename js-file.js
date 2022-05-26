@@ -19,42 +19,78 @@ function operate(operator, firstNum, secondNum) {
   return operator(firstNum, secondNum);
 }
 
-//goal: when buttons are clicked they show up on the
-//display and are saved
-//steps: add click event listener to every button using a loop X
-// text content of button needs to be appended as a
-//string for the digits, saved and show up in the display
 function formatButtons() {
   const btns = document.querySelectorAll("button");
   btns.forEach((btn) => {
     btn.addEventListener("click", () => {
       window[btn.className](btn.textContent);
-      //if button clicked is a digit-btn send it to digitButton();
-      //else if its a operator button send it to operatorButton();
-      //else if its the = button send it to equalButton();
-      //else if its the clear button send it to clearButton();
-      //else if its the . button send it to the decimalButton();
-      //optionally, if its the backspace button send it to backSpace();
     });
   });
 }
 
-//Appends new digit to old digit/digits pressed.
 function digitBtn(digit) {
   populateDisplay(digit);
 }
 
 function operatorBtn(operator) {
-  console.log(operator);
+  let display = returnDisplayValue();
+  const ops = ["+", "-", "÷", "*"];
+
+  if (doesItContain(display, ops)) {
+    if (doesItContain(display.charAt([display.length - 1]), ops)) {
+      backspaceBtn();
+      populateDisplay(operator);
+      return -1;
+    }
+    return -1;
+  }
+
+  populateDisplay(operator);
 }
 
 //Adds the visible display for the user
 function populateDisplay(entry) {
+  addToDisplay(entry);
   const display = document.querySelector(".display");
-  display.textContent = addToDisplay(entry);
+  display.textContent = returnDisplayValue();
 }
 
+//Appends new digit to old digit/digits pressed.
 function addToDisplay(entry) {
+  if (entry == "backspace") {
+    displayValue = displayValue.slice(0, -1);
+    populateDisplay("");
+    return -1;
+  }
+  if (entry == "clear") {
+    displayValue = "";
+    populateDisplay("");
+    return -1;
+  }
+
   displayValue = displayValue + entry;
   return displayValue;
+}
+
+function backspaceBtn() {
+  addToDisplay("backspace");
+}
+
+function clearBtn() {
+  addToDisplay("clear");
+}
+
+function returnDisplayValue() {
+  return displayValue;
+}
+
+function doesItContain(str, arr) {
+  const contains = arr.some((element) => {
+    if (str.includes(element)) {
+      return true;
+    }
+
+    return false;
+  });
+  return contains;
 }

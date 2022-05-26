@@ -2,8 +2,9 @@ let displayValue = "";
 
 formatButtons();
 
+//Basic calclator functions
 function add(firstNum, secondNum) {
-  return firstNum + secondNum;
+  return +firstNum + +secondNum;
 }
 function subtract(firstNum, secondNum) {
   return firstNum - secondNum;
@@ -15,10 +16,13 @@ function divide(firstNum, secondNum) {
   return firstNum / secondNum;
 }
 
+//Performs calculator function
 function operate(operator, firstNum, secondNum) {
-  return operator(firstNum, secondNum);
+  return window[operator](firstNum, secondNum);
 }
 
+//Formats the calculator buttons to be clickable and sends them to their appropriate
+//function to be appropriately used.
 function formatButtons() {
   const btns = document.querySelectorAll("button");
   btns.forEach((btn) => {
@@ -28,10 +32,14 @@ function formatButtons() {
   });
 }
 
+//Sends a digit to be added to the display
 function digitBtn(digit) {
   populateDisplay(digit);
 }
 
+//Checks if an operator is already on the display, if so then it doesnt let another
+//operator be sent. If the operator in the display is the last character then the user
+//may change their operation choice.
 function operatorBtn(operator) {
   let display = returnDisplayValue();
   const ops = ["+", "-", "÷", "*"];
@@ -72,18 +80,48 @@ function addToDisplay(entry) {
   return displayValue;
 }
 
+//
+function equalBtn() {
+  const ops = ["+", "-", "÷", "*"];
+  let display = returnDisplayValue();
+
+  if (!doesItContain(display, ops)) {
+    return -1;
+  }
+  let operator = getOperator();
+  let opIndex = findOpIndex();
+
+  if (display.charAt(display.length - 1) === display.charAt(opIndex)) {
+    let onlyNum = display.slice(0, display.length - 1);
+    clearBtn();
+    populateDisplay(operate(operator, onlyNum, onlyNum));
+    return -1;
+  }
+
+  let firstNum = display.slice(0, opIndex);
+  let secondNum = display.slice(opIndex + 1, display.length);
+
+  clearBtn();
+  populateDisplay(operate(operator, firstNum, secondNum));
+  return -1;
+}
+
+//tells addToDisplay to erase the last character in the display
 function backspaceBtn() {
   addToDisplay("backspace");
 }
 
+//Tells addToDisplay to clear the display
 function clearBtn() {
   addToDisplay("clear");
 }
 
+//returns the value to be displayed
 function returnDisplayValue() {
   return displayValue;
 }
 
+//helper function for checking if a string contains a substring from an array
 function doesItContain(str, arr) {
   const contains = arr.some((element) => {
     if (str.includes(element)) {
@@ -93,4 +131,34 @@ function doesItContain(str, arr) {
     return false;
   });
   return contains;
+}
+
+//helper function for finding the operator index
+function findOpIndex() {
+  const ops = ["+", "-", "÷", "*"];
+  const displayValueArr = returnDisplayValue().split("");
+
+  const opIndex = displayValueArr.findIndex((index) =>
+    doesItContain(index, ops)
+  );
+
+  return opIndex;
+}
+
+function getOperator() {
+  let display = returnDisplayValue();
+  let operatorSymbol = display.charAt(findOpIndex());
+
+  if (operatorSymbol == "+") {
+    return "add";
+  }
+  if (operatorSymbol == "-") {
+    return "subtract";
+  }
+  if (operatorSymbol == "*") {
+    return "multiply";
+  }
+  if (operatorSymbol == "÷") {
+    return "divide";
+  }
 }

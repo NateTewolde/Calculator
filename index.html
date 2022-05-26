@@ -8,35 +8,40 @@
     <script src="./js-file.js" defer></script>
 </head>
 <body>
-    <div>
-        <button>Clear</button>
-        <button>&#8592</button>
-    </div>
-    <div>
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
-        <button>&#247</button>
-    </div>
-    <div>
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button>*</button>
-    </div>
-    <div>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>-</button>
+    <div id="container">
+        <div class="display">0</div>
+        <div>
+            <button class="clearBtn">Clear</button>
+            <!-- <button>&#8592</button> A backspace button, optional-->
+        </div>
+        <div>
+            <button class="digitBtn">7</button>
+            <button class="digitBtn">8</button>
+            <button class="digitBtn">9</button>
+            <button class="operatorBtn">&#247</button>
+        </div>
+        <div>
+            <button class="digitBtn">4</button>
+            <button class="digitBtn">5</button>
+            <button class="digitBtn">6</button>
+            <button class="operatorBtn">*</button>
+        </div>
+        <div>
+            <button class="digitBtn">1</button>
+            <button class="digitBtn">2</button>
+            <button class="digitBtn">3</button>
+            <button class="operatorBtn">-</button>
+    
+        </div>
+        <div>
+            <button class="digitBtn">0</button>
+            <button>.</button>
+            <button class="operatorBtn">=</button>
+            <button class="operatorBtn">+</button>
+    
+        </div>
 
     </div>
-    <div>
-        <button>0</button>
-        <button>.</button>
-        <button>=</button>
-        <button>+</button>
 
-    </div>
 </body>
 </html>

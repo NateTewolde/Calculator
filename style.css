@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&family=VT323&display=swap");
+
 body {
   height: 100vh;
   margin: 0;
@@ -6,18 +8,18 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: rgb(32, 32, 32);
   color: rgb(255, 255, 255);
 }
 #container {
-  border: 2px solid green;
 }
 .calculator {
   display: flex;
   flex-direction: column;
   align-items: end;
-  border: 2px solid red;
+  border: 1px solid green;
 }
 
 button {
@@ -31,7 +33,7 @@ button {
   background-color: rgb(20, 19, 19);
   border: 1px solid black;
   font-size: 25px;
-  width: 8vw;
+  width: 6vw;
   height: 8vh;
 }
 
@@ -39,18 +41,12 @@ button {
 .backspaceBtn {
   background-color: rgb(255, 43, 42);
   border: 1px solid red;
-  width: max-content;
 }
 
 .red-row {
-  margin-right: 0;
   width: 100%;
   white-space: nowrap;
-  border: solid 1px yellow;
-}
-.backspaceBtn {
-  width: 8vw;
-  height: 3vh;
+  border: 1px solid blue;
 }
 
 .clearBtn {
@@ -59,10 +55,15 @@ button {
   height: 3vh;
 }
 
+.backspaceBtn {
+  width: 6vw;
+  height: 3vh;
+}
+
 .operatorBtn,
 .equalBtn,
 .display {
-  width: 8vw;
+  width: 6vw;
   height: 8vh;
   background-color: rgb(47, 51, 50);
   border: 1px solid rgb(47, 51, 50);
@@ -79,4 +80,13 @@ button {
   border-radius: 5px;
   box-sizing: border-box;
   font-size: 30px;
+}
+
+.footer {
+  padding-bottom: 16px;
+  padding-top: 64px;
+  font-size: 18px;
+}
+.header {
+  font-family: "Source Code Pro", monospace;
 }

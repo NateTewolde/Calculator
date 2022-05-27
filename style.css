@@ -2,9 +2,9 @@
 
 body {
   height: 100vh;
-  margin: 0;
   overflow: hidden;
   font-family: Roboto, sans-serif;
+  margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,19 +13,17 @@ body {
   background-color: rgb(32, 32, 32);
   color: rgb(255, 255, 255);
 }
-#container {
-}
+
 .calculator {
   display: flex;
   flex-direction: column;
   align-items: end;
-  border: 1px solid green;
 }
 
 button {
   color: white;
-  border-radius: 5px;
   margin-top: 1.25%;
+  border-radius: 5px;
 }
 
 .digitBtn,
@@ -39,19 +37,21 @@ button {
 
 .clearBtn,
 .backspaceBtn {
+  font-size: 1.1em;
+
   background-color: rgb(255, 43, 42);
   border: 1px solid red;
 }
 
 .red-row {
-  width: 100%;
+  width: 99.5%;
   white-space: nowrap;
-  border: 1px solid blue;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .clearBtn {
-  /* width: 20.8vw; */
-  width: 100%;
+  flex: 1;
   height: 3vh;
 }
 

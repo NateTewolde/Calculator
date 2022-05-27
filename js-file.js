@@ -21,6 +21,12 @@ function divide(firstNum, secondNum) {
 
 //Performs calculator function
 function operate(operator, firstNum, secondNum) {
+  if (firstNum.charAt(0) === "−") {
+    firstNum = firstNum.replace("−", "-");
+  }
+  if (secondNum.charAt(0) === "−") {
+    secondNum = secondNum.replace("−", "-");
+  }
   return window[operator](firstNum, secondNum);
 }
 
@@ -50,7 +56,21 @@ function operatorBtn(operator) {
   let display = returnDisplayValue();
   const ops = ["+", "-", "÷", "*"];
 
+  if (display.charAt(0) === "" && operator === "-") {
+    populateDisplay("−");
+    return -1;
+  }
+  if (display.charAt(0) === "−" && display.charAt(1) === "") {
+    return -1;
+  }
+
   if (doesItContain(display, ops)) {
+    let opIndex = findOpIndex();
+
+    if (display.charAt(opIndex + 1) === "") {
+      populateDisplay("−");
+      return -1;
+    }
     if (doesItContain(display.charAt([display.length - 1]), ops)) {
       backspaceBtn();
       populateDisplay(operator);

@@ -93,6 +93,7 @@ function populateDisplay(entry) {
   addToDisplay(entry);
   const display = document.querySelector(".display");
   display.textContent = returnDisplayValue();
+  checkToDisableDecimal();
 }
 
 //Appends new digit to old digit/digits pressed.
@@ -107,7 +108,6 @@ function addToDisplay(entry) {
     populateDisplay("");
     return -1;
   }
-  checkToDisableDecimal();
 
   displayValue = displayValue + entry;
   return displayValue;
@@ -141,7 +141,6 @@ function equalBtn() {
 
 function decimalBtn(decimal) {
   populateDisplay(decimal);
-  checkToDisableDecimal();
 }
 
 function checkToDisableDecimal() {

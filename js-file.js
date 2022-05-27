@@ -27,7 +27,11 @@ function operate(operator, firstNum, secondNum) {
   if (secondNum.charAt(0) === "−") {
     secondNum = secondNum.replace("−", "-");
   }
-  return window[operator](firstNum, secondNum);
+  let result = window[operator](firstNum, secondNum);
+  if (result % 1 !== 0) {
+    result = parseFloat(result.toFixed(5));
+  }
+  return result;
 }
 
 //Formats the calculator buttons to be clickable and sends them to their appropriate
@@ -39,6 +43,7 @@ function formatButtons() {
       if (returnDisplayValue() == "Crashing the matrix") {
         clearBtn();
       }
+
       window[btn.className](btn.textContent);
     });
   });
@@ -102,6 +107,7 @@ function addToDisplay(entry) {
     populateDisplay("");
     return -1;
   }
+  checkToDisableDecimal();
 
   displayValue = displayValue + entry;
   return displayValue;
@@ -121,7 +127,7 @@ function equalBtn() {
   if (display.charAt(display.length - 1) === display.charAt(opIndex)) {
     let onlyNum = display.slice(0, display.length - 1);
     clearBtn();
-    populateDisplay(operate(operator, onlyNum, onlyNum));
+    populateDisplay(checkIfNegative(operate(operator, firstNum, secondNum)));
     return -1;
   }
 
@@ -129,8 +135,34 @@ function equalBtn() {
   let secondNum = display.slice(opIndex + 1, display.length);
 
   clearBtn();
-  populateDisplay(operate(operator, firstNum, secondNum));
+  populateDisplay(checkIfNegative(operate(operator, firstNum, secondNum)));
   return -1;
+}
+
+function decimalBtn(decimal) {
+  populateDisplay(decimal);
+  checkToDisableDecimal();
+}
+
+function checkToDisableDecimal() {
+  document.querySelector(".decimalBtn").disabled = false;
+  let display = returnDisplayValue();
+  let opIndex = findOpIndex();
+  if (opIndex >= "0") {
+    document.querySelector(".decimalBtn").disabled = false;
+    let secondNum = display.slice(opIndex + 1, display.length);
+    if (secondNum.includes(".")) {
+      document.querySelector(".decimalBtn").disabled = true;
+      return;
+    }
+    return;
+  }
+  let firstNum = display;
+
+  if (firstNum.includes(".")) {
+    document.querySelector(".decimalBtn").disabled = true;
+    return;
+  }
 }
 
 //tells addToDisplay to erase the last character in the display
@@ -188,4 +220,12 @@ function getOperator() {
   if (operatorSymbol == "÷") {
     return "divide";
   }
+}
+
+function checkIfNegative(entry) {
+  entry = entry.toString();
+  if (entry.charAt(0) === "-") {
+    entry = entry.replace("-", "−");
+  }
+  return entry;
 }

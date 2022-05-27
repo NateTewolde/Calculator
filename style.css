@@ -1,0 +1,82 @@
+body {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  font-family: Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(32, 32, 32);
+  color: rgb(255, 255, 255);
+}
+#container {
+  border: 2px solid green;
+}
+.calculator {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  border: 2px solid red;
+}
+
+button {
+  color: white;
+  border-radius: 5px;
+  margin-top: 1.25%;
+}
+
+.digitBtn,
+.decimalBtn {
+  background-color: rgb(20, 19, 19);
+  border: 1px solid black;
+  font-size: 25px;
+  width: 8vw;
+  height: 8vh;
+}
+
+.clearBtn,
+.backspaceBtn {
+  background-color: rgb(255, 43, 42);
+  border: 1px solid red;
+  width: max-content;
+}
+
+.red-row {
+  margin-right: 0;
+  width: 100%;
+  white-space: nowrap;
+  border: solid 1px yellow;
+}
+.backspaceBtn {
+  width: 8vw;
+  height: 3vh;
+}
+
+.clearBtn {
+  /* width: 20.8vw; */
+  width: 100%;
+  height: 3vh;
+}
+
+.operatorBtn,
+.equalBtn,
+.display {
+  width: 8vw;
+  height: 8vh;
+  background-color: rgb(47, 51, 50);
+  border: 1px solid rgb(47, 51, 50);
+  font-size: 25px;
+}
+
+.calculator .display {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+  height: 6vh;
+  padding-right: 20px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 30px;
+}

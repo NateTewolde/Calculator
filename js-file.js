@@ -127,7 +127,7 @@ function equalBtn() {
   if (display.charAt(display.length - 1) === display.charAt(opIndex)) {
     let onlyNum = display.slice(0, display.length - 1);
     clearBtn();
-    populateDisplay(checkIfNegative(operate(operator, firstNum, secondNum)));
+    populateDisplay(checkIfNegative(operate(operator, onlyNum, onlyNum)));
     return -1;
   }
 

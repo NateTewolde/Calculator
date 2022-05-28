@@ -65,7 +65,11 @@ function operatorBtn(operator) {
     populateDisplay("−");
     return -1;
   }
+
   if (display.charAt(0) === "−" && display.charAt(1) === "") {
+    if (operator === "-") {
+      populateDisplay("-");
+    }
     return -1;
   }
 
@@ -108,7 +112,15 @@ function addToDisplay(entry) {
     populateDisplay("");
     return -1;
   }
-
+  if (
+    entry === "-" &&
+    displayValue.length === 1 &&
+    displayValue.charAt(0) === "−"
+  ) {
+    clearBtn();
+    populateDisplay("-−");
+    return -1;
+  }
   displayValue = displayValue + entry;
   return displayValue;
 }

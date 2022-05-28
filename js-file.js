@@ -72,7 +72,7 @@ function operatorBtn(operator) {
   if (doesItContain(display, ops)) {
     let opIndex = findOpIndex();
 
-    if (display.charAt(opIndex + 1) === "") {
+    if (display.charAt(opIndex + 1) === "" && operator === "-") {
       populateDisplay("−");
       return -1;
     }

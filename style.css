@@ -26,6 +26,16 @@ button {
   border-radius: 5px;
 }
 
+button:active:not(.clearBtn, .backspaceBtn) {
+  background-color: gray;
+}
+
+.clearBtn:active,
+.backspaceBtn:active {
+  background-color: rgb(243, 120, 120);
+  border: 1px solid rgb(243, 120, 120);
+}
+
 .digitBtn,
 .decimalBtn {
   background-color: rgb(20, 19, 19);

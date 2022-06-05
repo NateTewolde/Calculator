@@ -97,6 +97,7 @@ button:active:not(.clearBtn, .backspaceBtn) {
   border-radius: 5px;
   box-sizing: border-box;
   font-size: 30px;
+  overflow: hidden;
 }
 
 .footer {

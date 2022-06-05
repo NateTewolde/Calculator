@@ -60,6 +60,13 @@ button:active:not(.clearBtn, .backspaceBtn) {
   justify-content: flex-end;
 }
 
+/*
+//this also works, can even remove the display flex from .red-row. Good alternative to know now 
+.clearBtn {
+  width: calc(100% - 6vw);
+}
+ */
+
 .clearBtn {
   flex: 1;
   height: 3vh;
@@ -84,7 +91,7 @@ button:active:not(.clearBtn, .backspaceBtn) {
   display: flex;
   justify-content: end;
   align-items: center;
-  width: 100%;
+  min-width: 100%;
   height: 6vh;
   padding-right: 20px;
   border-radius: 5px;

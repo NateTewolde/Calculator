@@ -96,7 +96,7 @@ function operatorBtn(operator) {
 function populateDisplay(entry) {
   addToDisplay(entry);
   const display = document.querySelector(".display");
-  display.textContent = returnDisplayValue();
+  display.textContent = addCommas(returnDisplayValue());
   checkToDisableDecimal();
 }
 
@@ -111,6 +111,11 @@ function addToDisplay(entry) {
     displayValue = "";
     populateDisplay("");
     return -1;
+  }
+  if (entry == "commas") {
+    let withCommas = addCommas();
+    clearBtn();
+    populateDisplay(withCommas);
   }
   if (
     entry === "-" &&
@@ -177,32 +182,35 @@ function checkToDisableDecimal() {
   }
 }
 
-//checks the display to see if a comma needs to be placed within a number.
-//a comma is needed every 3 digits.
-function checkIfNeedsComma(display) {
-  let opIndex = findOpIndex();
-  let firstNum = 0;
-  let secondNum = 0;
-
-  if (opIndex > 0) {
-    firstNum = display.slice(0, opIndex);
-    secondNum = display.slice(opIndex + 1, display.length);
-  } else {
-    firstNum = display;
-  }
-
-  console.log(firstNum + "hi" + secondNum);
-}
-
 //helper method that adds commas in appropriate places
-function addCommas(num) {
-  numArray = num.split("");
-  reversedNum = numArray.reverse();
-  return reversedNum;
+function addCommas(display) {
+  const numArray = display.split("");
+  const reversedNum = numArray.reverse();
+
+  const reversedWithCommas = [];
+
+  let counter = 0;
+  for (let i = 0; i < reversedNum.length; i++) {
+    reversedWithCommas.push(reversedNum[i]);
+
+    if (!isNaN(reversedNum[i])) {
+      counter++;
+    } else {
+      counter = 0;
+    }
+
+    if (counter % 3 === 0 && !isNaN(reversedNum[i + 1]) && counter !== 0) {
+      reversedWithCommas.push(",");
+    }
+  }
+  const withCommasArray = reversedWithCommas.reverse();
+  let withCommasStr = withCommasArray.join("");
+  return withCommasStr;
 }
 
 //removes all commas for easier calculations
-function removeCommas(display) {
+function removeCommas() {
+  let display = returnDisplayValue();
   return display.replaceAll(",", "");
 }
 

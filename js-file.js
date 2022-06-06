@@ -28,7 +28,7 @@ function operate(operator, firstNum, secondNum) {
     secondNum = secondNum.replace("−", "-");
   }
   let result = window[operator](firstNum, secondNum);
-  if (result % 1 !== 0) {
+  if (result % 1 !== 0 && result !== "Crashing the matrix") {
     result = parseFloat(result.toFixed(5));
   }
   return result;
@@ -128,7 +128,7 @@ function addToDisplay(entry) {
 //Gets the appropriate calculation variables from the display and gets the calculation answer
 function equalBtn() {
   const ops = ["+", "-", "÷", "*"];
-  let display = returnDisplayValue();
+  let display = removeCommas(returnDisplayValue());
 
   if (!doesItContain(display, ops)) {
     return -1;
@@ -155,6 +155,7 @@ function decimalBtn(decimal) {
   populateDisplay(decimal);
 }
 
+//Checks if a valid decimal has already been placed so that the button can be disabled
 function checkToDisableDecimal() {
   document.querySelector(".decimalBtn").disabled = false;
   let display = returnDisplayValue();
@@ -174,6 +175,35 @@ function checkToDisableDecimal() {
     document.querySelector(".decimalBtn").disabled = true;
     return;
   }
+}
+
+//checks the display to see if a comma needs to be placed within a number.
+//a comma is needed every 3 digits.
+function checkIfNeedsComma(display) {
+  let opIndex = findOpIndex();
+  let firstNum = 0;
+  let secondNum = 0;
+
+  if (opIndex > 0) {
+    firstNum = display.slice(0, opIndex);
+    secondNum = display.slice(opIndex + 1, display.length);
+  } else {
+    firstNum = display;
+  }
+
+  console.log(firstNum + "hi" + secondNum);
+}
+
+//helper method that adds commas in appropriate places
+function addCommas(num) {
+  numArray = num.split("");
+  reversedNum = numArray.reverse();
+  return reversedNum;
+}
+
+//removes all commas for easier calculations
+function removeCommas(display) {
+  return display.replaceAll(",", "");
 }
 
 //tells addToDisplay to erase the last character in the display
@@ -215,6 +245,7 @@ function findOpIndex() {
   return opIndex;
 }
 
+//returns the string version of a basic arithmetic operator
 function getOperator() {
   let display = returnDisplayValue();
   let operatorSymbol = display.charAt(findOpIndex());

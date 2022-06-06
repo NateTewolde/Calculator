@@ -194,6 +194,10 @@ function checkToDisableDecimal() {
 
 //helper method that adds commas in appropriate places
 function addCommas(display) {
+  if (document.querySelector(".decimalBtn").disabled === true) {
+    return display;
+  }
+
   const numArray = display.split("");
   const reversedNum = numArray.reverse();
 

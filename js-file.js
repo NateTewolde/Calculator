@@ -80,12 +80,22 @@ function operatorBtn(operator) {
       populateDisplay("−");
       return -1;
     }
+
+    if (
+      display.charAt(opIndex + 1) === "−" &&
+      display.charAt(opIndex + 2) === ""
+    ) {
+      return -1;
+    }
+
     if (doesItContain(display.charAt([display.length - 1]), ops)) {
       backspaceBtn();
       populateDisplay(operator);
       return -1;
     }
 
+    equalBtn();
+    operatorBtn(operator);
     return -1;
   }
 

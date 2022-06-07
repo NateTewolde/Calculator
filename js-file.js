@@ -52,11 +52,14 @@ function formatButtons() {
 
 function formatKeys() {
   const btns = document.querySelectorAll("button");
+  const btnsArray = Array.from(btns);
 
   window.addEventListener("keydown", (e) => {
     if (returnDisplayValue() == "Crashing the matrix") {
       clearBtn();
     }
+    const rightBtn = btnsArray.filter((btn) => btn.textContent == e.key);
+    console.log(rightBtn[0].textContent);
   });
 }
 

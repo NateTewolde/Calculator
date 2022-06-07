@@ -44,6 +44,7 @@ function formatButtons() {
       if (returnDisplayValue() == "Crashing the matrix") {
         clearBtn();
       }
+      checkToDisableDecimal();
 
       window[btn.className](btn.textContent);
     });
@@ -219,7 +220,6 @@ function checkToDisableDecimal() {
 
 //helper method that adds commas in appropriate places
 function addCommas(display) {
-  checkToDisableDecimal();
   if (document.querySelector(".decimalBtn").disabled === true) {
     return display;
   }

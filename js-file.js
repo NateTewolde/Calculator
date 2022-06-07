@@ -1,6 +1,7 @@
 let displayValue = "";
 
 formatButtons();
+formatKeys();
 
 //Basic calclator functions
 function add(firstNum, secondNum) {
@@ -46,6 +47,16 @@ function formatButtons() {
 
       window[btn.className](btn.textContent);
     });
+  });
+}
+
+function formatKeys() {
+  const btns = document.querySelectorAll("button");
+
+  window.addEventListener("keydown", (e) => {
+    if (returnDisplayValue() == "Crashing the matrix") {
+      clearBtn();
+    }
   });
 }
 
@@ -107,7 +118,6 @@ function populateDisplay(entry) {
   addToDisplay(entry);
   const display = document.querySelector(".display");
   display.textContent = addCommas(returnDisplayValue());
-  checkToDisableDecimal();
 }
 
 //Appends new digit to old digit/digits pressed.
@@ -194,6 +204,7 @@ function checkToDisableDecimal() {
 
 //helper method that adds commas in appropriate places
 function addCommas(display) {
+  checkToDisableDecimal();
   if (document.querySelector(".decimalBtn").disabled === true) {
     return display;
   }

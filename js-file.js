@@ -58,8 +58,20 @@ function formatKeys() {
     if (returnDisplayValue() == "Crashing the matrix") {
       clearBtn();
     }
-    const rightBtn = btnsArray.filter((btn) => btn.textContent == e.key);
-    console.log(rightBtn[0].textContent);
+    let rightBtn = btnsArray.filter((btn) => btn.textContent == e.key);
+    console.log(rightBtn);
+
+    if (e.key === "Backspace") {
+      rightBtn = btnsArray.filter((btn) => btn.textContent == "⟵");
+    }
+    if (e.key === "Enter") {
+      rightBtn = btnsArray.filter((btn) => btn.textContent == "=");
+    }
+    if (e.key === "/") {
+      rightBtn = btnsArray.filter((btn) => btn.textContent == "÷");
+    }
+
+    rightBtn[0].click();
   });
 }
 
